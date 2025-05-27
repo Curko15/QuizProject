@@ -1,0 +1,43 @@
+.session-card {
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.session-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  transform: translateY(-2px) scale(1.01);
+}
+.question-card, .leaderboard-card {
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.question-card:hover, .leaderboard-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+  transform: translateY(-2px) scale(1.01);
+}
+.option-btn {
+  font-size: 1.1rem;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  transition: background 0.15s, color 0.15s;
+}
+.option-btn:disabled {
+  opacity: 0.7;
+}
+.bg-success.bg-opacity-10 {
+  background-color: rgba(25, 135, 84, 0.10) !important;
+}
+.list-group-item {
+  font-size: 1rem;
+}
+.card-header {
+  font-size: 1.1rem;
+}
+.answered-badge {
+  font-size: 1.1em;
+  padding: 0.4em 0.7em;
+  background-color: #198754 !important;
+  color: #fff !important;
+  border-radius: 1em;
+  box-shadow: 0 2px 8px rgba(25,135,84,0.15);
+  vertical-align: middle;
+}

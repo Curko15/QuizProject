@@ -1,0 +1,68 @@
+<!-- src/app/pages/edit-questions/edit-questions.component.html -->
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold text-primary mb-0">
+      <i class="bi bi-pencil-square me-2"></i>Uredi pitanja za kviz
+    </h2>
+    <button class="btn btn-outline-secondary" (click)="goBack()">
+      <i class="bi bi-arrow-left"></i>
+    </button>
+  </div>
+
+  <div class="card shadow-sm border-0 add-question-card mb-5">
+    <div class="card-body">
+      <h5 class="card-title text-success mb-3">
+        <i class="bi bi-plus-circle me-2"></i>Novo pitanje
+      </h5>
+      <div class="mb-3">
+        <label for="newQuestionText" class="form-label">Tekst pitanja:</label>
+        <textarea id="newQuestionText" class="form-control" [(ngModel)]="newQuestionText" rows="2"></textarea>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Odgovori:</label>
+        <div class="row g-2">
+          <div class="col-12 col-md-6" *ngFor="let option of newOptions; let i = index">
+            <input type="text" class="form-control" [(ngModel)]="newOptions[i].value" placeholder="Odgovor {{i + 1}}">
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="newCorrectAnswer" class="form-label">Točan odgovor:</label>
+        <select id="newCorrectAnswer" class="form-select" [(ngModel)]="newCorrectAnswer">
+          <option *ngFor="let option of newOptions" [value]="option.value">{{ option.value }}</option>
+        </select>
+      </div>
+      <div *ngIf="showValidation" class="alert alert-danger py-2 mb-3">
+        Sva polja moraju biti popunjena i točan odgovor mora biti odabran.
+      </div>
+      <button class="btn btn-success" (click)="addQuestion()">
+        <i class="bi bi-plus-lg"></i> Dodaj Pitanje
+      </button>
+    </div>
+  </div>
+
+  <h4 class="mb-3 text-primary">Pitanja za kviz</h4>
+  <ul class="list-group" *ngIf="questions.length > 0; else noQuestions">
+    <li *ngFor="let question of questions" class="list-group-item d-flex justify-content-between align-items-center question-list-item">
+      <div>
+        <span class="fw-semibold"><i class="bi bi-question-circle me-1"></i>{{ question.questionText }}</span>
+        <div class="small text-muted">
+          <span *ngFor="let opt of question.options; let last = last">
+            <span class="badge bg-light text-dark border me-1">{{ opt }}</span>
+          </span>
+          <span class="text-success ms-2">
+            <i class="bi bi-check-circle"></i> {{ question.correctAnswer }}
+          </span>
+        </div>
+      </div>
+      <button class="btn btn-outline-danger btn-sm" (click)="deleteQuestion(question.quizId)">
+        <i class="bi bi-trash"></i>
+      </button>
+    </li>
+  </ul>
+  <ng-template #noQuestions>
+    <div class="alert alert-info mt-3 text-center">
+      <i class="bi bi-info-circle me-2"></i>Nema dodanih pitanja u kvizu.
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,19 @@
+/* src/app/pages/edit-questions/edit-questions.component.css */
+.add-question-card {
+  max-width: 600px;
+  margin: 0 auto;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.add-question-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  transform: translateY(-2px) scale(1.01);
+}
+.btn-success, .btn-primary {
+  min-width: 120px;
+}
+.question-list-item {
+  transition: background 0.15s;
+}
+.question-list-item:hover {
+  background: rgba(13, 110, 253, 0.05);
+}

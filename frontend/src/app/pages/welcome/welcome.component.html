@@ -1,0 +1,63 @@
+<div class="container mt-5">
+  <h1 class="mb-4 text-primary fw-bold">Dobrodošao, {{ fullName }}!</h1>
+  <a class="btn btn-outline-secondary mb-4" routerLink="/quiz-history">
+    <i class="bi bi-clock-history me-2"></i>Povijest kvizova
+  </a>
+
+  <!-- For teachers: Quiz list and create button -->
+  <div *ngIf="userRole === 'TEACHER'">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h3 class="fw-semibold">Moji Kvizovi</h3>
+      <button class="btn btn-success shadow" routerLink="/create-quiz">
+        <i class="bi bi-plus-circle me-1"></i>Dodaj Kviz
+      </button>
+    </div>
+
+    <div *ngIf="quizzes.length > 0; else noQuizzes">
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4" *ngFor="let quiz of quizzes">
+          <div class="card h-100 shadow-sm border-0 quiz-card">
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div>
+                <h5 class="card-title text-primary">{{ quiz.title }}</h5>
+                <p class="card-text text-muted small">{{ quiz.description }}</p>
+              </div>
+              <div class="d-flex gap-2 mt-3">
+                <a class="btn btn-outline-primary btn-sm" [routerLink]="['/edit-questions', quiz.quizId]">
+                  <i class="bi bi-pencil"></i>
+                </a>
+                <button class="btn btn-outline-danger btn-sm" (click)="deleteQuiz(quiz.quizId)">
+                  <i class="bi bi-trash"></i>
+                </button>
+                <button class="btn btn-success btn-sm" (click)="startQuiz(quiz.quizId)">
+                  <i class="bi bi-play-fill"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #noQuizzes>
+      <div class="alert alert-info mt-4"><i class="bi bi-info-circle me-2"></i>Nema kreiranih kvizova.</div>
+    </ng-template>
+  </div>
+
+  <div *ngIf="userRole === 'STUDENT'" class="mt-5">
+    <div class="card shadow-sm p-4 mx-auto" style="max-width: 400px;">
+      <h3 class="mb-3 text-success">Pridruži se kvizu</h3>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Unesite kod kviza" [(ngModel)]="joinCode">
+        <button class="btn btn-success" (click)="joinQuiz()">
+          <i class="bi bi-box-arrow-in-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

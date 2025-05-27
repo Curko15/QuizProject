@@ -1,0 +1,8 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary px-4">
+  <a class="navbar-brand" routerLink="/">FERKviz</a>
+
+  <div class="ms-auto d-flex align-items-center" *ngIf="auth.isLoggedIn()">
+    <span class="text-white me-3">Pozdrav, {{ auth.getFullName() }}</span>
+    <button class="btn btn-outline-light btn-sm" (click)="onLogout()">Odjava</button>
+  </div>
+</nav>
